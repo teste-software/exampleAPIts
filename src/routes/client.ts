@@ -1,7 +1,13 @@
 import {Router} from 'express';
+import ClientService from "../service/client";
 
 
 export default class RouteClient {
+    readonly clientService: ClientService;
+    constructor(clientService: ClientService) {
+        this.clientService = clientService;
+    }
+
 
     load(app: Router) {
         const router = Router();
@@ -13,8 +19,8 @@ export default class RouteClient {
         router.get('/davi/:id', (req, res) => {
             const {id} = req.params;
 
-            if (id === '123') return res.status(200).json({message: 'exitste'});
-            return res.status(200).json({message: 'n exitste'});
+            const message = this.clientService.getId(id);
+            return res.status(200).json({message});
         });
 
         return router;

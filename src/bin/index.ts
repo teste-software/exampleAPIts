@@ -1,9 +1,12 @@
 import express from 'express';
 import ClientRoute from '../routes/client';
+import ClientService from "../service/client";
 
 (async () => {
     const app = express();
-    const clientRoute = new ClientRoute();
+
+    const clientService = new ClientService();
+    const clientRoute = new ClientRoute(clientService);
 
     clientRoute.load(app);
 
