@@ -9,9 +9,9 @@ export default class RouteClient {
         app.use("/api", routeLoad);
     }
 
-    setup(router: Router) {
+    setup(router) {
         router.get('/davi/:id', (req, res) => {
-            const {id} = req.params;
+            const {id} = req.param;
 
             if (id === '123') return res.status(200).json({message: 'exitste'});
             return res.status(200).json({message: 'n exitste'});
